@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include "Morse.cpp"
 
 Morse morse;
