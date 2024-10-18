@@ -21,11 +21,11 @@ void Morse::executerSelonValeurIndex(String p_valeurIndexTab) {
     }
     // caractère long.
     else {
-      allumerDELInterne(UNITE * 3);      
+      allumerDELInterne(UNITE_X_TROIS);      
     }
     // Éteindre unite * 1 entre les parties d'une lettre
     eteindreDELInterne(UNITE);
   }
   // Ajouter éteindre * 2 pour avoir unité * 3 entre les lettres
-  eteindreDELInterne(UNITE * 2);
+  eteindreDELInterne(UNITE_X_DEUX);
 }

@@ -42,6 +42,9 @@ const String TAB_ALPHABET[26] = {"cl", "lccc", "lclc", "lcc", "c", "cclc", "llc"
 const String TAB_NUMERIQUE[10] = {"lllll", "cllll", "cclll", "cccll", "ccccl", "ccccc", "lcccc", "llccc", "lllcc", "llllc"};
 
 const short UNITE = 200;
+const short UNITE_X_DEUX = UNITE * 2;
+const short UNITE_X_TROIS = UNITE * 3;
+const short UNITE_X_SEPT = UNITE *7;
 
 Morse();
 void allumerDELInterne(short p_duree);

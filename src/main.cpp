@@ -28,11 +28,11 @@ void loop() {
     } 
     else {    
       // Le caractère est un espace, éteindre unité * 7 entre les mots.  
-      morse.eteindreDELInterne(morse.UNITE * 7);
+      morse.eteindreDELInterne(morse.UNITE_X_SEPT);
     }
   }
   // Montre visuellement la fin de la chaine avec: éteint 1400 ms, allumé 1400 ms et éteint 1400 ms.
-  morse.eteindreDELInterne(morse.UNITE * 7);
-  morse.allumerDELInterne(morse.UNITE * 7);
-  morse.eteindreDELInterne(morse.UNITE * 7);
+  morse.eteindreDELInterne(morse.UNITE_X_SEPT);
+  morse.allumerDELInterne(morse.UNITE_X_SEPT);
+  morse.eteindreDELInterne(morse.UNITE_X_SEPT);
 }
