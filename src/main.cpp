@@ -1,6 +1,4 @@
-#include "Morse.cpp"
-
-Morse morse;
+#include "Morse.h"
 
 void setup() { 
   pinMode(LED_BUILTIN, OUTPUT);
@@ -8,6 +6,7 @@ void setup() {
 
 void loop() {
 
+  Morse morse;
   String entree = "Hello World 12345";
 // Représentation en morse de la string "Hello World 12345"
 // [. . . .] [.] [. _ . .] [. _ . .] [_ _ _]       [. _ _] [_ _ _] [. _ .] [. _ . .] [_ . .]       [. _ _ _ _] [. . _ _ _] [. . . _ _] [. . . . _] [. . . . .]
