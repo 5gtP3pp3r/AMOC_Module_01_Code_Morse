@@ -45,7 +45,6 @@ const short UNITE = 200;
 const short UNITE_X_DEUX = UNITE * 2;
 const short UNITE_X_TROIS = UNITE * 3;
 const short UNITE_X_SEPT = UNITE *7;
-
 Morse();
 void allumerDELInterne(short p_duree);
 void eteindreDELInterne(short p_duree);
