@@ -37,7 +37,7 @@ public:
 const String TAB_ALPHABET[26] = {"cl", "lccc", "lclc", "lcc", "c", "cclc", "llc", "cccc", "cc", "clll", "lcl", "clcc", "ll",
 //                               n      o      p       q       r      s     t     u      v       w      x       y       z
                                 "lc", "lll", "cllc", "llcl", "clc", "ccc", "l", "ccl", "cccl", "cll", "lccl", "lcll", "llcc"};
-
+// À essayer plus tard: Utiliser tableau de byte! (0b1010)
 //                                  0        1        2        3        4        5        6        7        8        9        
 const String TAB_NUMERIQUE[10] = {"lllll", "cllll", "cclll", "cccll", "ccccl", "ccccc", "lcccc", "llccc", "lllcc", "llllc"};
 
