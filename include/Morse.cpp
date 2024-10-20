@@ -1,7 +1,7 @@
 #include "Morse.h"
 
 Morse::Morse() {
-    ;
+  ;
 }
 
 void Morse::allumerDELInterne(short p_duree) {
