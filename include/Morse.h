@@ -45,9 +45,9 @@ const String TAB_NUMERIQUE[10] = {"lllll", "cllll", "cclll", "cccll", "ccccl", "
     sera identique à la valeur de u 0b001 soit 1 aussi. J'ai besoin d'une structure qui conserve toutes les valeurs déclarées.
     Je crois donc que la string reste la meilleur option puisque je suis capable de différencier chaque valeurs c et l.*/
 const short UNITE = 200;
-const short UNITE_X_DEUX = UNITE * 2;
-const short UNITE_X_TROIS = UNITE * 3;
-const short UNITE_X_SEPT = UNITE *7;
+const short DEUX_UNITES = UNITE * 2;
+const short TROIS_UNITES = UNITE * 3;
+const short SEPT_UNITES = UNITE *7;
 Morse();
 void allumerDELInterne(short p_duree);
 void eteindreDELInterne(short p_duree);
