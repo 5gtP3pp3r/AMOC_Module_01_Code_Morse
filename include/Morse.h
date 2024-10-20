@@ -39,7 +39,11 @@ const String TAB_ALPHABET[26] = {"cl", "lccc", "lclc", "lcc", "c", "cclc", "llc"
                                 "lc", "lll", "cllc", "llcl", "clc", "ccc", "l", "ccl", "cccl", "cll", "lccl", "lcll", "llcc"};
 //                                   0        1        2        3        4        5        6        7        8        9        
 const String TAB_NUMERIQUE[10] = {"lllll", "cllll", "cclll", "cccll", "ccccl", "ccccc", "lcccc", "llccc", "lllcc", "llllc"};
-
+/*  J'ai essayé de faire un tableau de "Byte", mais j'ai rencontré un problème. Prenons en exemple les lettres e, i, s et h. 
+    Elle auraient les valeurs 0b0, ob00, 0b000 et 0b0000. se qui revient au final à 0. donc je me retrouve avec un mauvais 
+    affichage. La même chose est vrais aussi pour les valeur qui commence par 0 comme a 0b01 au final ça valeur sera 1 et 
+    sera identique à la valeur de u 0b001 soit 1 aussi. J'ai besoin d'une structure qui conserve toutes les valeurs déclarées
+    Je crois donc que la string reste la meilleur option puisque je suis capable de différentier chaque valeurs c et l.*/
 const short UNITE = 200;
 const short UNITE_X_DEUX = UNITE * 2;
 const short UNITE_X_TROIS = UNITE * 3;
