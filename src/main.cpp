@@ -6,7 +6,7 @@ void setup() {
 
 void loop() {
 
-  // Je l'admet mon code est simpliste, Ma classe Morse n'est qu'une classe de méthodes. C'est un premier jet qui remplace le premier exercice SOS
+  // Je l'admet mon code est simpliste. C'est un premier jet qui remplace les premiers exercice du points 1 du module 2.
 
   Morse morse;
   String *entree = new String("Hello World 12345");
