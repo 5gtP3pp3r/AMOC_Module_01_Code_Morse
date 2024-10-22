@@ -33,6 +33,12 @@ class Morse {
 
 public:
 
+Morse();
+void convertirStringEnMorse(String &p_entree);
+void executerSelonValeurIndex(String p_valeurIndexTab);
+void allumerDELInterne(short p_duree);
+void eteindreDELInterne(short p_duree);
+
 //                               a      b       c       d     e     f       g      h      i      j       k      l      m     
 const String TAB_ALPHABET[26] = {"cl", "lccc", "lclc", "lcc", "c", "cclc", "llc", "cccc", "cc", "clll", "lcl", "clcc", "ll",
 //                               n      o      p       q       r      s     t     u      v       w      x       y       z
@@ -48,9 +54,4 @@ const short UNITE = 200;
 const short DEUX_UNITES = UNITE * 2;
 const short TROIS_UNITES = UNITE * 3;
 const short SEPT_UNITES = UNITE *7;
-Morse();
-void convertirStringEnMorse(String &p_entree);
-void executerSelonValeurIndex(String p_valeurIndexTab);
-void allumerDELInterne(short p_duree);
-void eteindreDELInterne(short p_duree);
 };
