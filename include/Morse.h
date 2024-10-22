@@ -49,8 +49,8 @@ const short DEUX_UNITES = UNITE * 2;
 const short TROIS_UNITES = UNITE * 3;
 const short SEPT_UNITES = UNITE *7;
 Morse();
+void convertirStringEnMorse(String &p_entree);
+void executerSelonValeurIndex(String p_valeurIndexTab);
 void allumerDELInterne(short p_duree);
 void eteindreDELInterne(short p_duree);
-void executerSelonValeurIndex(String p_valeurIndexTab);
-
 };
