@@ -55,18 +55,18 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
     else {
       allumerDELInterne(TROIS_UNITES);      
     }
-    // Éteindre unite * 1 entre les parties d'une lettre
+    // Éteindre UNITE * 1 entre les parties d'une lettre
     eteindreDELInterne(UNITE);
 
     // Décrémentation de "positionValeur" pour changer de bite à isoler depuis "p_valeurIndexTab".
     --positionValeur;
-    
+
     // Réatribution d'une nouvelle valeur à "valeurBite" grace à l'opérateur ">>" 
     // depuis "p_valeurIndexTab" avec la nouvelle valeur de "positionValeur".
     // "valeurBite sera remasqué en début de boucle pour isoler le bite suivant."
     valeurBite = p_valeurIndexTab >> positionValeur;
   }
-  // Ajouter éteindre * 2 pour avoir unité * 3 entre les lettres
+  // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
   eteindreDELInterne(DEUX_UNITES);
 }
 
