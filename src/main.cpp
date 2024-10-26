@@ -15,4 +15,5 @@ void loop() {
   //     h      e      l         l        o     ' '     w       o       r        l        d     ' '       1           2           3           4           5
 
   morse.convertirStringEnMorse(*entree);
+  delete entree;
 }
