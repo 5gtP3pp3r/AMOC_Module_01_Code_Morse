@@ -1,7 +1,7 @@
 #include "Morse.h"
 
 Morse::Morse() {
-  ;
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void Morse::convertirStringEnMorse(const String &p_entree) {
@@ -30,44 +30,34 @@ void Morse::convertirStringEnMorse(const String &p_entree) {
 }
 
 void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
-  // "accesseur" est la valeur au début du byte, elle me donne donc le nombre d'itération à
-  // faire dans la partie valeur du byte pour "accéder" aux valeurs 0 ou 1 à afficher.
-  // L'accesseur est isolé grace à l'opérateur ">>" qui éliminera les 5 premiers bite de "p_valeurIndexTab".
+  // "accesseur" est la valeur de 3 bites au début du byte, elle me donne donc le nombre d'itération
+  // à faire dans la plage "valeur" du byte pour "accéder" aux valeurs 0 ou 1 à afficher. L'accesseur
+  // est isolé grace à l'opérateur ">>" qui éliminera les 5 premiers bite de "p_valeurIndexTab".
   byte accesseur = p_valeurIndexTab >> POSITION;
 
-  // "positionValeur" est un chiffre qui me donnera access au début des bites de la section  
-  // "valeur" de "p_valeurIndexTab". Il sera décrémenter pour lire les bites de gauche à droite 
-  // dans la section "valeur". Il est donc logiquement 1 de moins que la position de l'accesseur.
-  byte positionValeur = accesseur -1 ;
+  // "valeurBite" est la plage de bites isolé grace à l'opération bite à bite >> accesseur -1.
+  // Cette plage de valeurs est donc logiquement 1 de moins que la position de l'accesseur.
+  byte valeurBite = p_valeurIndexTab >> accesseur -1;
 
-  // "valeurBite" est donc le bite isolé à la position présenté par "positionValeur".
-  byte valeurBite = p_valeurIndexTab >> positionValeur;
-
-  for (byte i = 0; i < accesseur; ++i) {
+  for (byte position = accesseur; position > 0; --position) {
 
     // Isolation du dernier bite de valeurBite grace à un "&" logique avec un masque égale à 0000 0001
     valeurBite = valeurBite & MASQUE_VALEUR;
-    // caractère court "." -> 0.
-    if (valeurBite == 0) {
-      allumerDELInterne(UNITE);
-    }
-    // caractère long "-" -> 1.
-    else {
-      allumerDELInterne(TROIS_UNITES);      
-    }
-    // Éteindre UNITE * 1 entre les parties d'une lettre
-    eteindreDELInterne(UNITE);
-
-    // Décrémentation de "positionValeur" pour changer de bite à isoler depuis "p_valeurIndexTab".
-    --positionValeur;
+    
+    if (valeurBite == 0) {    
+      allumerDELInterne(UNITE);           // caractère court "." -> 0.
+    }    
+    else {                    
+      allumerDELInterne(TROIS_UNITES);    // caractère long "-" -> 1.     
+    }   
+    eteindreDELInterne(UNITE);            // Éteindre UNITE * 1 entre les parties d'une lettre
 
     // Réatribution d'une nouvelle valeur à "valeurBite" grace à l'opérateur ">>" 
-    // depuis "p_valeurIndexTab" avec la nouvelle valeur de "positionValeur".
+    // depuis "p_valeurIndexTab" avec la nouvelle valeur de "position".
     // "valeurBite sera remasqué en début de boucle pour isoler le bite suivant."
-    valeurBite = p_valeurIndexTab >> positionValeur;
-  }
-  // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
-  eteindreDELInterne(DEUX_UNITES);
+    valeurBite = p_valeurIndexTab >> accesseur - position;
+  }  
+  eteindreDELInterne(DEUX_UNITES);        // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
 }
 
 void Morse::allumerDELInterne(short p_duree) const {
