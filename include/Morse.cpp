@@ -54,7 +54,7 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
 
     // Réatribution d'une nouvelle valeur à "valeurBite" grace à l'opérateur ">>" 
     // depuis "p_valeurIndexTab" avec la nouvelle valeur de "position".
-    // "valeurBite sera remasqué en début de boucle pour isoler le bite suivant."
+    // "valeurBite" sera remasqué en début de boucle pour isoler le bite suivant.
     valeurBite = p_valeurIndexTab >> accesseur - position;
   }  
   eteindreDELInterne(DEUX_UNITES);        // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
