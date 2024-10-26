@@ -33,29 +33,25 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
   // "accesseur" est la valeur de 3 bites au début du byte, elle me donne donc le nombre d'itération
   // à faire dans la plage "valeur" du byte pour "accéder" aux valeurs 0 ou 1 à afficher. L'accesseur
   // est isolé grace à l'opérateur ">>" qui éliminera les 5 premiers bite de "p_valeurIndexTab".
+  // Exemple avec la lettre "a" 0b[010]00001
   byte accesseur = p_valeurIndexTab >> POSITION;
-
-  // "valeurBites" est la plage de bites isolé grace à l'opération bite à bite >> accesseur -1.
-  // Cette plage de valeurs est donc logiquement 1 de moins que la position de l'accesseur.
-  byte valeurBites = p_valeurIndexTab >> (accesseur -1);
-
-  for (byte position = accesseur; position > 0; --position) {
-
-    // Isolation du dernier bite de valeurBite grace à un "&" logique avec un masque égale à 0000 0001
-    byte bite = valeurBites & MASQUE_VALEUR;
-    
-    if (bite == 0) {    
-      allumerDELInterne(UNITE);           // caractère court "." -> 0.
-    }    
+                                                                                                        
+  for (byte position = accesseur -1; position >= 0; --position) {     
+    // "valeurBites" est une plage de bites isolé grace à l'opération bite à bite >> "position".
+    // Cette plage contiendra la valeur du bite à isoler qui sera masqué plus tard.                       // Exemples des opérations dans  
+    // Au départ, position est donc logiquement 1 de moins que l'accesseur. Position                      // la boucle avec la lettre "a" 0b01000001
+    // sera décrémenté à chaque tour pour isoler le prochain bite vers la droite.                         // accesseur = 0b01000001 >> 5 = 0b/00000/[010] donc 2 tours
+    byte valeurBites = p_valeurIndexTab >> position;                                                      // Tour 1: valeurBites = 0b01000001 >> (00000010 (2) - 1) = 0b/0/010000[0]
+    // Isolation du dernier bite de valeurBite grace à un "&" logique avec un masque égale à 0000 0001    // bite = 0b0010000[0] & 0b0000000[1] = 0b0000000[0] donc 0
+    byte bite = valeurBites & MASQUE_VALEUR;                                                              // Est appelé: allumerDELInterne(UNITE);                                                                                                          
+                                                                                                          // Tour 2: valeurBites = 0b01000001 >> (00000010 (2) - (2)) = 0b0100000[1]
+    if (bite == 0) {                                                                                      // bite = 0b0001000[1] & 0b0000000[1] = 0b0000000[1] donc 1
+      allumerDELInterne(UNITE);           // caractère court "." -> 0.                                    // Est appelé: allumerDELInterne(TROIS_UNITES);
+    }                                                                                                     // Résultat "a" ". -" = "0 1" :)
     else {                    
       allumerDELInterne(TROIS_UNITES);    // caractère long "-" -> 1.     
     }   
     eteindreDELInterne(UNITE);            // Éteindre UNITE * 1 entre les parties d'une lettre
-
-    // Réatribution d'une nouvelle valeur à "valeurBites" grace à l'opérateur ">>" 
-    // depuis "p_valeurIndexTab" avec la nouvelle valeur de "position".
-    // "bite" sera remasqué en début de boucle pour isoler le bite suivant.
-    valeurBites = p_valeurIndexTab >> (accesseur - position);
   }  
   eteindreDELInterne(DEUX_UNITES);        // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
 }
