@@ -35,16 +35,16 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
   // est isolé grace à l'opérateur ">>" qui éliminera les 5 premiers bite de "p_valeurIndexTab".
   byte accesseur = p_valeurIndexTab >> POSITION;
 
-  // "valeurBite" est la plage de bites isolé grace à l'opération bite à bite >> accesseur -1.
+  // "valeurBites" est la plage de bites isolé grace à l'opération bite à bite >> accesseur -1.
   // Cette plage de valeurs est donc logiquement 1 de moins que la position de l'accesseur.
-  byte valeurBite = p_valeurIndexTab >> accesseur -1;
+  byte valeurBites = p_valeurIndexTab >> accesseur -1;
 
   for (byte position = accesseur; position > 0; --position) {
 
     // Isolation du dernier bite de valeurBite grace à un "&" logique avec un masque égale à 0000 0001
-    valeurBite = valeurBite & MASQUE_VALEUR;
+    byte bite = valeurBites & MASQUE_VALEUR;
     
-    if (valeurBite == 0) {    
+    if (bite == 0) {    
       allumerDELInterne(UNITE);           // caractère court "." -> 0.
     }    
     else {                    
@@ -52,10 +52,10 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
     }   
     eteindreDELInterne(UNITE);            // Éteindre UNITE * 1 entre les parties d'une lettre
 
-    // Réatribution d'une nouvelle valeur à "valeurBite" grace à l'opérateur ">>" 
+    // Réatribution d'une nouvelle valeur à "valeurBites" grace à l'opérateur ">>" 
     // depuis "p_valeurIndexTab" avec la nouvelle valeur de "position".
-    // "valeurBite" sera remasqué en début de boucle pour isoler le bite suivant.
-    valeurBite = p_valeurIndexTab >> accesseur - position;
+    // "bite" sera remasqué en début de boucle pour isoler le bite suivant.
+    valeurBites = p_valeurIndexTab >> accesseur - position;
   }  
   eteindreDELInterne(DEUX_UNITES);        // Ajouter UNITE * 2 pour avoir UNITE * 3 entre les lettres
 }
