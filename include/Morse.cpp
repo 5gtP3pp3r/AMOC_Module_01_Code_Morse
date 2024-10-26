@@ -30,22 +30,21 @@ void Morse::convertirStringEnMorse(const String &p_entree) {
 }
 
 void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
-  // "accesseur" est la valeur de 3 bites au début du byte, elle me donne donc le nombre d'itération
+  // "accesseur" est la valeur des 3 bits à gauche dans le byte, elle me donne donc le nombre d'itération
   // à faire dans la plage "valeur" du byte pour "accéder" aux valeurs 0 ou 1 à afficher. L'accesseur
-  // est isolé grace à l'opérateur ">>" qui éliminera les 5 premiers bite de "p_valeurIndexTab".
-  // Exemple avec la lettre "a" 0b[010]00001
+  // est isolé grace à l'opérateur bit à bit >> qui éliminera les 5 premiers bits de "p_valeurIndexTab".
   byte accesseur = p_valeurIndexTab >> POSITION;
                                                                                                         
   for (byte position = accesseur -1; position >= 0; --position) {     
-    // "valeurBites" est une plage de bites isolé grace à l'opération bite à bite >> "position".
-    // Cette plage contiendra la valeur du bite à isoler qui sera masqué plus tard.                       // Exemples des opérations dans  
-    // Au départ, position est donc logiquement 1 de moins que l'accesseur. Position                      // la boucle avec la lettre "a" 0b01000001
-    // sera décrémenté à chaque tour pour isoler le prochain bite vers la droite.                         // accesseur = 0b01000001 >> 5 = 0b/00000/[010] donc 2 tours
-    byte valeurBites = p_valeurIndexTab >> position;                                                      // Tour 1: valeurBites = 0b01000001 >> (00000010 (2) - 1) = 0b/0/010000[0]
-    // Isolation du dernier bite de valeurBite grace à un "&" logique avec un masque égale à 0000 0001    // bite = 0b0010000[0] & 0b0000000[1] = 0b0000000[0] donc 0
+    // "valeurBites" est une plage de bites isolées grace à l'opération bit à bit >> "position".
+    // Cette plage contiendra la valeur du bit à isoler qui sera masqué plus tard.                        // Exemples des opérations dans  
+    // Au départ, position est donc logiquement 1 de moins que l'accesseur. "position"                    // la boucle avec la lettre "a" 0b01000001
+    // sera décrémenté à chaque tour pour isoler le prochain bit vers la droite.                          // accesseur = 0b01000001 >> 5 = 0b/00000/[010] donc 2 tours
+    byte valeurBites = p_valeurIndexTab >> position;                                                      // Tour 1: valeurBites = 0b01000001 >> (0b00000001 (1)) = 0b/0/010000[0]
+    // Isolation du dernier bit de "valeurBites" grace à un "&" logique avec un masque de 0000 0001       // bite = 0b00[1]0000[0] & 0b00[0]0000[1] = 0b00[0]0000[0] donc 0
     byte bite = valeurBites & MASQUE_VALEUR;                                                              // Est appelé: allumerDELInterne(UNITE);                                                                                                          
-                                                                                                          // Tour 2: valeurBites = 0b01000001 >> (00000010 (2) - (2)) = 0b0100000[1]
-    if (bite == 0) {                                                                                      // bite = 0b0001000[1] & 0b0000000[1] = 0b0000000[1] donc 1
+                                                                                                          // Tour 2: valeurBites = 0b01000001 >> (0b00000000 (0)) = 0b0100000[1]
+    if (bite == 0) {                                                                                      // bite = 0b000[1]000[1] & 0b000[0]000[1] = 0b000[0]000[1] donc 1
       allumerDELInterne(UNITE);           // caractère court "." -> 0.                                    // Est appelé: allumerDELInterne(TROIS_UNITES);
     }                                                                                                     // Résultat "a" ". -" = "0 1" :)
     else {                    
