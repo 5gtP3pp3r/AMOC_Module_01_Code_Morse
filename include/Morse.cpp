@@ -5,17 +5,17 @@ Morse::Morse() {
 }
 
 void Morse::convertirStringEnMorse(const String &p_entree) {
-  for (byte i = 0; i < p_entree.length(); ++i) {  
+  for (byte caractere = 0; caractere < p_entree.length(); ++caractere) {  
     // Le caractère est une lettre: 
-    if (toLowerCase(p_entree[i]) >= 'a' && toLowerCase(p_entree[i]) <= 'z') {
+    if (toLowerCase(p_entree[caractere]) >= 'a' && toLowerCase(p_entree[caractere]) <= 'z') {
       // valeur du caractère - valeur de 'a' = sa position dans le tableau tabAlphabet. Exemples: 'a'(97) - 'a'(97) = 0, 'a' est bien à l'index 0 et'z'(122) - 'a'(97) = 25.
-      byte valeurIndexAlpha = TAB_ALPHABET[toLowerCase(p_entree[i]) - 'a'];
+      byte valeurIndexAlpha = TAB_ALPHABET[toLowerCase(p_entree[caractere]) - 'a'];
       executerSelonValeurIndex(valeurIndexAlpha);
     }
     // Le caractère est un chiffre:
-    else if (p_entree[i] >= '0' && p_entree[i] <= '9') {
+    else if (p_entree[caractere] >= '0' && p_entree[caractere] <= '9') {
       // Valeur du caractère - valeur de '0'= sa position dans le tableau TabNumerique. Exemples: '0' - '0' = 0 et '9' - '0' = 9.
-      byte valeurIndexNumerique = TAB_NUMERIQUE[p_entree[i] - '0'];
+      byte valeurIndexNumerique = TAB_NUMERIQUE[p_entree[caractere] - '0'];
       executerSelonValeurIndex(valeurIndexNumerique);
     } 
     else {    
