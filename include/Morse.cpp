@@ -60,6 +60,7 @@ void Morse::executerSelonValeurIndex(byte p_valeurIndexTab) const {
 
     // Décrémentation de "positionValeur" pour changer de bite à isoler depuis "p_valeurIndexTab".
     --positionValeur;
+    
     // Réatribution d'une nouvelle valeur à "valeurBite" grace à l'opérateur ">>" 
     // depuis "p_valeurIndexTab" avec la nouvelle valeur de "positionValeur".
     // "valeurBite sera remasqué en début de boucle pour isoler le bite suivant."
