@@ -1,7 +1,7 @@
 #include "Morse.cpp"
 
 void setup() { 
-  pinMode(LED_BUILTIN, OUTPUT);
+  ;
 }
 
 void loop() {
